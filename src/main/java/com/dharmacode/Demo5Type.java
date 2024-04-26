@@ -1,4 +1,4 @@
-package com.chriscodebytes;
+package com.dharmacode;
 
 public enum Demo5Type {
     TYPE_0,
