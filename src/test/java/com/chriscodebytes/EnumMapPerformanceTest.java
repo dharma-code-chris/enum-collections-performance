@@ -115,21 +115,16 @@ public class EnumMapPerformanceTest {
             }
             for (int r = 0; r < READ_CYCLES; r++) {
                 for (E value : values) {
-                    // Do something with the value to avoid the JIT compiler
-                    // removing redundant code.
                     total += map.get(value);
                 }
             }
         }
+
+        assert total > 0;
+
         Instant end = Instant.now();
 
         long millis = end.toEpochMilli() - start.toEpochMilli();
-
-        /*DecimalFormat df2 = new DecimalFormat("#,###,###,###,##0");
-        System.out.printf("%1$s finished %2$s iterations of %3$s read cycles with %4$d enum values in " +
-                "%5$s milliseconds.%n", mapName, df2.format(ITERATIONS), df2.format(READ_CYCLES), values.length,
-                df2.format(millis));
-        System.out.println("Total: " + total);*/
 
         csvBuilder.append(mapName).append(CSV_SEPARATOR);
         csvBuilder.append(ITERATIONS).append(CSV_SEPARATOR);
