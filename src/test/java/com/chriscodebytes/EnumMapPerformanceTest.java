@@ -107,7 +107,9 @@ public class EnumMapPerformanceTest {
     private <M extends Map<E, Integer>, E extends Enum<E>> void testMapPerformance(E[] values, Supplier<M> mapSupplier,
                                                                                    String mapName) {
         long total = 0;
+
         Instant start = Instant.now();
+
         for (int i = 0; i < ITERATIONS; i++) {
             Map<E, Integer> map = mapSupplier.get();
             for (int j = 0; j < values.length; j++) {
@@ -120,9 +122,9 @@ public class EnumMapPerformanceTest {
             }
         }
 
-        assert total > 0;
-
         Instant end = Instant.now();
+
+        assert total > 0;
 
         long millis = end.toEpochMilli() - start.toEpochMilli();
 
